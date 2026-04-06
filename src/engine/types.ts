@@ -12,6 +12,8 @@ export interface FaceDef {
 export interface Prediction {
   targetNumbers: number[];
   matchedFaces: FaceId[];
+  racetrackNeighbors: number[];
+  gridNeighbors: number[];
   residuals: number[];
 }
 

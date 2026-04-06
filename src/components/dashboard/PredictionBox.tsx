@@ -47,43 +47,58 @@ export const PredictionBox: React.FC<PredictionBoxProps> = ({ history, onToggleB
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         onClick={onToggleBetConfirmation}
-        className={`flex flex-col items-center justify-center py-3 px-4 backdrop-blur-md rounded-xl border shadow-inner transition-all transform-gpu duration-300 min-h-[60px] cursor-pointer select-none
+        className={`flex flex-col items-center justify-center py-3 px-4 rounded-2xl transition-all transform-gpu duration-300 min-h-[60px] cursor-pointer select-none
           ${isConfirmed 
-            ? 'bg-green-500/20 border-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.2)]' 
-            : 'bg-white/5 border-white/10 hover:bg-white/10'
+            ? 'bg-green-500/10 shadow-[0_0_15px_rgba(34,197,94,0.1)]' 
+            : 'bg-transparent hover:bg-white/5'
           }
         `}
       >
-        <div className="flex items-center gap-2 flex-wrap justify-center">
-          {prediction.matchedFaces.map(faceId => {
-            const faceDef = FACES.find(f => f.id === faceId);
-            if (!faceDef) return null;
-            return (
-              <span key={faceId} className={`px-2 py-1 rounded text-xs font-bold ${faceDef.bg} ${faceDef.color} border ${faceDef.border}`}>
-                {faceDef.id}
-              </span>
-            );
-          })}
-          
-          {prediction.matchedFaces.length > 0 && prediction.residuals.length > 0 && (
-            <span className="text-white/50 font-bold">+</span>
-          )}
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            {/* Racetrack Neighbors */}
+            {prediction.racetrackNeighbors && prediction.racetrackNeighbors.length > 0 && (
+              <div className="flex items-center gap-2 bg-[#1e1b29] px-3 py-1.5 rounded-2xl border border-white/5 shadow-lg">
+                <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Racetrack</span>
+                <div className="flex gap-1">
+                  {prediction.racetrackNeighbors.map(num => (
+                    <span key={`rt-${num}`} className={`w-6 h-6 flex items-center justify-center rounded-full font-bold text-[11px] bg-black text-white shadow-inner`}>
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
-          {prediction.residuals.length > 0 && (
-            <div className="flex flex-wrap gap-1 items-center justify-center">
-              {prediction.residuals.map(num => (
-                <span 
-                  key={num} 
-                  className={`w-6 h-6 flex items-center justify-center rounded-full font-bold text-[11px] shadow-sm border border-white/20 ${getColor(num)}`}
-                >
-                  {num}
-                </span>
-              ))}
-            </div>
-          )}
+            {/* Grid Neighbors */}
+            {prediction.gridNeighbors && prediction.gridNeighbors.length > 0 && (
+              <div className="flex items-center gap-2 bg-[#1e1b29] px-3 py-1.5 rounded-2xl border border-white/5 shadow-lg">
+                <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">Grid</span>
+                <div className="flex gap-1">
+                  {prediction.gridNeighbors.map(num => (
+                    <span key={`grid-${num}`} className={`w-6 h-6 flex items-center justify-center rounded-full font-bold text-[11px] bg-black text-white shadow-inner`}>
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Face Group */}
+            {prediction.matchedFaces && prediction.matchedFaces.map(faceId => {
+              const faceDef = FACES.find(f => f.id === faceId);
+              if (!faceDef) return null;
+              return (
+                <div key={faceId} className={`flex items-center gap-2 bg-[#1e1b29] px-3 py-1.5 rounded-2xl border border-white/5 shadow-lg`}>
+                  <span className={`text-[10px] uppercase tracking-widest font-bold text-white/50`}>Face</span>
+                  <span className={`font-bold text-[12px] text-white`}>{faceDef.id}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
         
-        <div className="mt-2 text-[9px] font-bold tracking-widest text-white/30 uppercase">
+        <div className="mt-4 text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
           {isConfirmed ? 'Bet Confirmed' : 'Click to Confirm Bet'} ({prediction.targetNumbers.length} units)
         </div>
       </motion.div>

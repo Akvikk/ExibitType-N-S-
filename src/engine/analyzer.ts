@@ -1,27 +1,47 @@
-import { TRIGGER_MAP, FACES } from './constants';
+import { FACES, WHEEL_SEQUENCE } from './constants';
 import { Prediction, FaceId } from './types';
 
 export function analyzeSpin(spin: number): Prediction {
-  const targetNumbers = TRIGGER_MAP[spin] || [];
-  const targetSet = new Set(targetNumbers);
-  const matchedFaces: FaceId[] = [];
-  const matchedFaceNumbers = new Set<number>();
+  // 1. Racetrack Neighbors (1 left, 1 right)
+  const wheelIndex = WHEEL_SEQUENCE.indexOf(spin);
+  const leftNeighbor = WHEEL_SEQUENCE[(wheelIndex - 1 + WHEEL_SEQUENCE.length) % WHEEL_SEQUENCE.length];
+  const rightNeighbor = WHEEL_SEQUENCE[(wheelIndex + 1) % WHEEL_SEQUENCE.length];
+  const racetrackNeighbors = [leftNeighbor, rightNeighbor];
 
-  // Check which faces are 100% matched
-  FACES.forEach(face => {
-    const isMatch = face.numbers.every(n => targetSet.has(n));
-    if (isMatch) {
-      matchedFaces.push(face.id);
-      face.numbers.forEach(n => matchedFaceNumbers.add(n));
-    }
-  });
+  // 2. Grid Neighbors
+  let gridNeighbors: number[] = [];
+  if (spin === 0) {
+    gridNeighbors = [1];
+  } else if (spin === 36) {
+    gridNeighbors = [35];
+  } else {
+    gridNeighbors = [spin - 1, spin + 1];
+  }
 
-  // Any target numbers that don't belong to a fully matched face are residuals
-  const residuals = targetNumbers.filter(n => !matchedFaceNumbers.has(n));
+  // 3. Face Group
+  const matchedFace = FACES.find(face => face.numbers.includes(spin));
+  const faceGroupNumbers = matchedFace ? matchedFace.numbers : [];
+  const matchedFaces: FaceId[] = matchedFace ? [matchedFace.id] : [];
+
+  // Combine all into a unique set of target numbers
+  const targetSet = new Set<number>([
+    ...racetrackNeighbors,
+    ...gridNeighbors,
+    ...faceGroupNumbers
+  ]);
+  
+  const targetNumbers = Array.from(targetSet).sort((a, b) => a - b);
+
+  // Residuals are the neighbors that aren't part of the matched face
+  const residuals = [...racetrackNeighbors, ...gridNeighbors].filter(n => !faceGroupNumbers.includes(n));
+  // Deduplicate residuals
+  const uniqueResiduals = Array.from(new Set(residuals)).sort((a, b) => a - b);
 
   return {
     targetNumbers,
     matchedFaces,
-    residuals
+    racetrackNeighbors,
+    gridNeighbors,
+    residuals: uniqueResiduals
   };
 }
