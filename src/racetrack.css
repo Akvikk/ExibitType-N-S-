@@ -1,0 +1,95 @@
+/* --- RACETRACK (PROGRADE) --- */
+#desktopGrid.racetrack-mode {
+    padding: 0;
+    overflow: hidden;
+}
+
+.racetrack-shell {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+}
+
+.roulette-racetrack {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0;
+    pointer-events: auto;
+    overflow: visible;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+}
+.animate-shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.rt-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 800;
+    pointer-events: none;
+    dominant-baseline: central;
+    text-anchor: middle;
+    transition: all 0.2s ease;
+}
+
+.rt-num-red {
+    fill: #ffffff;
+}
+
+.rt-num-black {
+    fill: #ffffff;
+}
+
+.rt-num-green {
+    fill: #ffffff;
+}
+
+.rt-seg {
+    cursor: pointer;
+    transition: filter 0.15s ease;
+}
+
+.rt-seg:hover {
+    filter: brightness(1.2);
+}
+
+.rt-seg:active {
+    filter: brightness(0.8);
+}
+
+.rt-fill-red {
+    fill: #d32f2f;
+}
+
+.rt-fill-black {
+    fill: #1a1a1a;
+}
+
+.rt-fill-green {
+    fill: #2e7d32;
+}
+
+.rt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-anchor: middle;
+    dominant-baseline: central;
+    fill: #e8d5a5;
+    pointer-events: none;
+}

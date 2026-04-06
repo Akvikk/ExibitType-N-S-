@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --theme-red: #ff3b30;
+  --theme-green: #34c759;
+  --ease-strike: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hide scrollbar globally but keep functionality */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+@keyframes gridPan {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
