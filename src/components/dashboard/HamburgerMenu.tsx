@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ResetConfirmationModal } from '../modals/ResetConfirmationModal';
 import { exportSessionData, importSessionData } from '../../utils/fileManager';
 import { InputMode } from '../../hooks/useRouletteSession';
-import { useAuth } from '../../contexts/AuthContext';
 
 interface HamburgerMenuProps {
   isOpen: boolean;
@@ -32,7 +31,6 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   const [isInputSettingsOpen, setIsInputSettingsOpen] = useState(false);
   const [isStrategySettingsOpen, setIsStrategySettingsOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { logout } = useAuth();
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -292,14 +290,6 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           >
             <Power size={18} className="group-hover:scale-110 transition-transform" />
             <span className="font-bold text-sm">Reset Session</span>
-          </button>
-
-          <button 
-            onClick={logout}
-            className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all transform-gpu text-white/60 hover:text-white text-left group active:scale-95"
-          >
-            <Power size={18} className="group-hover:scale-110 transition-transform" />
-            <span className="font-bold text-sm">Sign Out</span>
           </button>
         </div>
           </motion.div>

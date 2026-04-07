@@ -5,8 +5,6 @@ import { Racetrack } from './components/Racetrack';
 import { Dashboard } from './components/Dashboard';
 import { BackgroundBlobs } from './components/BackgroundBlobs';
 import { useRouletteSession } from './hooks/useRouletteSession';
-import { AuthProvider } from './contexts/AuthContext';
-import { AuthGuard } from './components/auth/AuthGuard';
 import { DraggableHUD } from './components/dashboard/DraggableHUD';
 import { AnimatePresence } from 'motion/react';
 
@@ -98,11 +96,5 @@ function MainApp() {
 }
 
 export default function App() {
-  return (
-    <AuthProvider>
-      <AuthGuard>
-        <MainApp />
-      </AuthGuard>
-    </AuthProvider>
-  );
+  return <MainApp />;
 }
