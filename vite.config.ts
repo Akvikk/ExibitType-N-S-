@@ -2,15 +2,16 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 
+const isSingleFile = process.env.SINGLE_FILE === '1';
+
 export default defineConfig({
-  base: './',
+  base: isSingleFile ? './' : '/ExibitType-N-S-/',
   plugins: [
     react(), 
     tailwindcss(),
-    viteSingleFile()
+    ...(isSingleFile ? [viteSingleFile()] : [])
   ],
   resolve: {
     alias: {
