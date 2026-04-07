@@ -1,0 +1,3 @@
+@echo off
+echo Starting ExibitSandN Server...
+npm run dev
