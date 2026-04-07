@@ -46,11 +46,11 @@ export const ViewModeSwitcher: React.FC<ViewModeSwitcherProps> = ({ viewMode, se
     <div className="relative hidden md:block z-50" ref={dropdownRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white hover:bg-[#2a2638] transition-all shadow-lg"
+        className="flex items-center gap-1.5 md:gap-3 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white hover:bg-[#2a2638] transition-all shadow-lg"
       >
-        {React.cloneElement(currentMode.icon as React.ReactElement, { className: "text-white" })}
-        <span className="text-[13px] font-bold tracking-widest">{currentMode.label}</span>
-        {isOpen ? <ChevronUp size={16} className="text-white/50 ml-1" /> : <ChevronDown size={16} className="text-white/50 ml-1" />}
+        {React.cloneElement(currentMode.icon as React.ReactElement, { className: "text-white w-[14px] h-[14px] md:w-[16px] md:h-[16px]" })}
+        <span className="hidden lg:inline text-[13px] font-bold tracking-widest">{currentMode.label}</span>
+        {isOpen ? <ChevronUp className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] text-white/50 ml-1" /> : <ChevronDown className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] text-white/50 ml-1" />}
       </button>
 
       {isOpen && (

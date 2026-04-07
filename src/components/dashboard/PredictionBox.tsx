@@ -47,21 +47,21 @@ export const PredictionBox: React.FC<PredictionBoxProps> = ({ history, onToggleB
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         onClick={onToggleBetConfirmation}
-        className={`flex items-center justify-center p-1.5 rounded-full transition-all transform-gpu duration-300 cursor-pointer select-none
+        className={`flex items-center justify-center p-1 md:p-1.5 rounded-full transition-all transform-gpu duration-300 cursor-pointer select-none
           ${isConfirmed 
             ? 'bg-green-500/10 shadow-[0_0_20px_rgba(34,197,94,0.15)] border border-green-500/30' 
             : 'bg-transparent hover:bg-white/5 border border-transparent'
           }
         `}
       >
-        <div className="flex items-center gap-2 flex-wrap justify-center">
+        <div className="flex items-center gap-1.5 md:gap-2 flex-wrap justify-center">
             {/* Racetrack Neighbors */}
             {prediction.racetrackNeighbors && prediction.racetrackNeighbors.length > 0 && (
-              <div className="flex items-center gap-3 bg-[#1e1b29] px-4 py-2 rounded-full border border-white/5 shadow-lg">
-                <span className="text-[11px] text-white/50 uppercase tracking-widest font-bold">Racetrack</span>
-                <div className="flex gap-1.5">
+              <div className="flex items-center gap-1.5 md:gap-3 bg-[#1e1b29] px-2.5 py-1 md:px-4 md:py-2 rounded-full border border-white/5 shadow-lg">
+                <span className="text-[9px] md:text-[11px] text-white/50 uppercase tracking-widest font-bold">RT</span>
+                <div className="flex gap-1 md:gap-1.5">
                   {prediction.racetrackNeighbors.map(num => (
-                    <span key={`rt-${num}`} className={`w-7 h-7 flex items-center justify-center rounded-full font-bold text-[13px] ${getColor(num)}`}>
+                    <span key={`rt-${num}`} className={`w-5 h-5 md:w-7 md:h-7 flex items-center justify-center rounded-full font-bold text-[10px] md:text-[13px] ${getColor(num)}`}>
                       {num}
                     </span>
                   ))}
@@ -71,11 +71,11 @@ export const PredictionBox: React.FC<PredictionBoxProps> = ({ history, onToggleB
 
             {/* Grid Neighbors */}
             {prediction.gridNeighbors && prediction.gridNeighbors.length > 0 && (
-              <div className="flex items-center gap-3 bg-[#1e1b29] px-4 py-2 rounded-full border border-white/5 shadow-lg">
-                <span className="text-[11px] text-white/50 uppercase tracking-widest font-bold">Grid</span>
-                <div className="flex gap-1.5">
+              <div className="flex items-center gap-1.5 md:gap-3 bg-[#1e1b29] px-2.5 py-1 md:px-4 md:py-2 rounded-full border border-white/5 shadow-lg">
+                <span className="text-[9px] md:text-[11px] text-white/50 uppercase tracking-widest font-bold">Grid</span>
+                <div className="flex gap-1 md:gap-1.5">
                   {prediction.gridNeighbors.map(num => (
-                    <span key={`grid-${num}`} className={`w-7 h-7 flex items-center justify-center rounded-full font-bold text-[13px] ${getColor(num)}`}>
+                    <span key={`grid-${num}`} className={`w-5 h-5 md:w-7 md:h-7 flex items-center justify-center rounded-full font-bold text-[10px] md:text-[13px] ${getColor(num)}`}>
                       {num}
                     </span>
                   ))}
@@ -88,9 +88,9 @@ export const PredictionBox: React.FC<PredictionBoxProps> = ({ history, onToggleB
               const faceDef = FACES.find(f => f.id === faceId);
               if (!faceDef) return null;
               return (
-                <div key={faceId} className={`flex items-center gap-3 bg-[#1e1b29] px-4 py-2 rounded-full border border-white/5 shadow-lg`}>
-                  <span className={`text-[11px] uppercase tracking-widest font-bold text-white/50`}>Face</span>
-                  <span className={`px-2 py-0.5 rounded text-[12px] font-bold ${faceDef.bg} ${faceDef.color} border ${faceDef.border}`}>
+                <div key={faceId} className={`flex items-center gap-1.5 md:gap-3 bg-[#1e1b29] px-2.5 py-1 md:px-4 md:py-2 rounded-full border border-white/5 shadow-lg`}>
+                  <span className={`text-[9px] md:text-[11px] uppercase tracking-widest font-bold text-white/50`}>Face</span>
+                  <span className={`px-1.5 py-0.5 md:px-2 md:py-0.5 rounded text-[10px] md:text-[12px] font-bold ${faceDef.bg} ${faceDef.color} border ${faceDef.border}`}>
                     {faceDef.id}
                   </span>
                 </div>

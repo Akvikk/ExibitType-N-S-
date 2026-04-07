@@ -68,7 +68,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex-1 flex flex-col bg-black/40 backdrop-blur-md rounded-l-3xl shadow-[-15px_0_50px_rgba(0,0,0,0.5)] overflow-hidden border-l border-white/10 border-t border-t-white/10 h-full z-10 relative"
+      className="flex-1 flex flex-col bg-black/40 backdrop-blur-md md:rounded-l-3xl shadow-[-15px_0_50px_rgba(0,0,0,0.5)] overflow-hidden md:border-l border-white/10 md:border-t border-t-white/10 h-full z-10 relative"
     >
       <DashboardBackground />
       
@@ -121,7 +121,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col px-4 pb-4 pt-2 gap-3 overflow-hidden">
+        <div className="flex-1 flex flex-col px-2 md:px-4 pb-2 md:pb-4 pt-1 md:pt-2 gap-2 md:gap-3 overflow-hidden">
           <PredictionBox onToggleBetConfirmation={onToggleBetConfirmation} history={history} />
           {showInlineForm && <WinLossBar history={history} />}
           <HistoryTable 
