@@ -39,18 +39,18 @@ export const WinLossBar: React.FC<WinLossBarProps> = ({ history }) => {
     <motion.div 
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-3 shrink-0 shadow-lg"
+      className="flex items-center gap-1.5 md:gap-3 bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-1.5 md:p-3 shrink-0 shadow-lg"
     >
-      <div className="flex flex-col items-center justify-center px-3 border-r border-white/10 shrink-0 min-w-[60px]">
-        <span className="text-[10px] text-white/50 font-bold tracking-widest uppercase mb-0.5">Form</span>
-        <span className={`text-sm font-bold ${winRate >= 50 ? 'text-cyan-400' : 'text-rose-500'}`}>
+      <div className="flex flex-col items-center justify-center px-2 md:px-3 border-r border-white/10 shrink-0 min-w-[40px] md:min-w-[60px]">
+        <span className="text-[8px] md:text-[10px] text-white/50 font-bold tracking-widest uppercase mb-0.5">Form</span>
+        <span className={`text-xs md:text-sm font-bold ${winRate >= 50 ? 'text-cyan-400' : 'text-rose-500'}`}>
           {winRate}%
         </span>
       </div>
       
       <div 
         ref={scrollRef}
-        className="flex items-center gap-2 overflow-x-auto flex-1 py-1 scroll-smooth"
+        className="flex items-center gap-1 md:gap-2 overflow-x-auto flex-1 py-0.5 md:py-1 scroll-smooth"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <style>{`
@@ -63,7 +63,7 @@ export const WinLossBar: React.FC<WinLossBarProps> = ({ history }) => {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             key={idx}
-            className={`flex items-center justify-center w-8 h-8 rounded-lg font-bold text-sm shrink-0 transition-all ${
+            className={`flex items-center justify-center w-5 h-5 md:w-8 md:h-8 rounded-md md:rounded-lg font-bold text-[10px] md:text-sm shrink-0 transition-all ${
               result === 'W' 
                 ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_12px_rgba(34,211,238,0.2)]' 
                 : 'bg-rose-500/20 text-rose-500 border border-rose-500/30'

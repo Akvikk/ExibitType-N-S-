@@ -41,7 +41,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   const [isError, setIsError] = useState(false);
 
   return (
-    <div className="flex items-center justify-between px-3 py-2 md:px-6 md:py-4 bg-transparent shrink-0">
+    <div className="flex items-center justify-between px-[7px] py-[1px] md:px-6 md:py-4 bg-transparent shrink-0 ml-0">
       <div className="flex items-center gap-1.5 md:gap-3">
         <input
           type="text"

@@ -20,7 +20,17 @@ export function useRouletteSession() {
       try {
         const saved = localStorage.getItem('roulette_history_v2');
         if (saved) {
-          return JSON.parse(saved);
+          const parsed = JSON.parse(saved);
+          // Fix any duplicate IDs from older versions
+          const seenIds = new Set();
+          return parsed.map((entry: HistoryEntry) => {
+            let id = entry.id;
+            while (seenIds.has(id)) {
+              id = id + Math.random();
+            }
+            seenIds.add(id);
+            return { ...entry, id };
+          });
         }
       } catch (e) {
         console.warn('Failed to read history from localStorage', e);
@@ -172,7 +182,7 @@ export function useRouletteSession() {
     const prediction = analyzeSpin(numberToAdd);
 
     const newEntry: HistoryEntry = {
-      id: Date.now(),
+      id: Date.now() + Math.random(),
       spin: numberToAdd,
       prediction: prediction,
       isBetConfirmed: false
@@ -251,7 +261,7 @@ export function useRouletteSession() {
     spins.forEach((spin, index) => {
       const prediction = analyzeSpin(spin);
       newHistory.push({
-        id: Date.now() + index,
+        id: Date.now() + index + Math.random(),
         spin,
         prediction,
         isBetConfirmed: false
