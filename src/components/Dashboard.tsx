@@ -121,7 +121,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col p-4 gap-4 overflow-hidden">
+        <div className="flex-1 flex flex-col px-4 pb-4 pt-2 gap-3 overflow-hidden">
           <PredictionBox onToggleBetConfirmation={onToggleBetConfirmation} history={history} />
           {showInlineForm && <WinLossBar history={history} />}
           <HistoryTable 

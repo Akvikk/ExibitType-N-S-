@@ -32,12 +32,12 @@ export const HistoryTable: React.FC<HistoryTableProps> = ({
     }
 
     return (
-      <div className="flex flex-wrap items-center gap-1.5 py-1">
+      <div className="flex flex-wrap items-center gap-2 py-1">
         {prediction.matchedFaces.map(faceId => {
           const faceDef = FACES.find(f => f.id === faceId);
           if (!faceDef) return null;
           return (
-            <span key={faceId} className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${faceDef.bg} ${faceDef.color} border ${faceDef.border}`}>
+            <span key={faceId} className={`px-2 py-0.5 rounded text-[11px] font-bold ${faceDef.bg} ${faceDef.color} border ${faceDef.border}`}>
               {faceDef.id}
             </span>
           );
@@ -52,7 +52,7 @@ export const HistoryTable: React.FC<HistoryTableProps> = ({
             {prediction.residuals.map(num => (
               <span 
                 key={num} 
-                className={`w-4 h-4 flex items-center justify-center rounded-full font-bold text-[8px] shadow-sm border border-white/20 ${getColor(num)}`}
+                className={`w-5 h-5 flex items-center justify-center rounded-full font-bold text-[9px] shadow-inner ${getColor(num)}`}
               >
                 {num}
               </span>
@@ -82,9 +82,9 @@ export const HistoryTable: React.FC<HistoryTableProps> = ({
   const gridStyle = { gridTemplateColumns: gridCols };
 
   return (
-    <div className="flex-1 flex flex-col bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden min-h-0 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+    <div className="flex-1 flex flex-col bg-transparent overflow-hidden min-h-0">
       <div 
-        className="grid px-4 py-3 bg-black/20 border-b border-white/10 text-[10px] font-bold tracking-widest text-white/50 shrink-0"
+        className="grid px-4 py-3 border-b border-white/5 text-[10px] font-bold tracking-widest text-white/50 shrink-0"
         style={gridStyle}
       >
         <div>#</div>
@@ -112,12 +112,12 @@ export const HistoryTable: React.FC<HistoryTableProps> = ({
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
-                  className="grid px-4 py-2 bg-white/5 rounded-xl items-center border border-white/5 hover:bg-white/10 hover:border-yellow-500/30 transition-all transform-gpu backdrop-blur-sm group"
+                  className="grid px-4 py-2.5 bg-[#1e1b29] rounded-2xl items-center border border-white/5 hover:bg-[#2a2638] transition-all transform-gpu shadow-lg group"
                   style={gridStyle}
                 >
-                  <div className="text-white/50 group-hover:text-yellow-300/80 font-mono text-xs transition-colors">{idx + 1}</div>
+                  <div className="text-white/50 font-mono text-xs transition-colors">{idx + 1}</div>
                   <div className="flex items-center">
-                    <span className={`w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs shadow-sm border border-white/20 ${getColor(entry.spin)}`}>
+                    <span className={`w-7 h-7 flex items-center justify-center rounded-full font-bold text-[13px] shadow-inner ${getColor(entry.spin)}`}>
                       {entry.spin}
                     </span>
                   </div>

@@ -39,7 +39,7 @@ function MainApp() {
   } = useRouletteSession();
 
   return (
-    <div id="desktopGrid" className="racetrack-mode h-screen w-full bg-[#05050a] text-white flex flex-row overflow-hidden font-sans selection:bg-pink-500/30 relative">
+    <div id="desktopGrid" className="racetrack-mode h-screen w-full bg-[#0a0510] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a0b2e] via-[#0a0510] to-[#05010a] text-white flex flex-row overflow-hidden font-sans selection:bg-pink-500/30 relative">
       {/* Animated background blobs for glass effect - Vibrant iOS style */}
       <BackgroundBlobs />
       

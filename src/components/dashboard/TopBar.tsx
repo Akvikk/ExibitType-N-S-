@@ -41,7 +41,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   const [isError, setIsError] = useState(false);
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-black/20 backdrop-blur-md border-b border-white/10 shrink-0">
+    <div className="flex items-center justify-between px-6 py-4 bg-transparent shrink-0">
       <div className="flex items-center gap-3">
         <input
           type="text"
@@ -73,7 +73,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               onAdd();
             }
           }}
-          className={`w-12 h-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-mono text-lg text-center outline-none transition-all transform-gpu focus:border-pink-500/50 focus:bg-pink-500/10 focus:shadow-[0_0_15px_rgba(236,72,153,0.3)] shadow-inner ${
+          className={`w-12 h-10 rounded-2xl bg-[#1e1b29] border border-white/5 text-white/50 font-mono text-lg text-center outline-none transition-all transform-gpu focus:border-pink-500/50 focus:text-white focus:shadow-[0_0_15px_rgba(236,72,153,0.3)] shadow-lg ${
             isError 
               ? 'border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)] animate-shake' 
               : ''
@@ -82,61 +82,61 @@ export const TopBar: React.FC<TopBarProps> = ({
         <button 
           onClick={onAdd}
           disabled={selectedNumber === null}
-          className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-400 hover:to-violet-400 border-none disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed text-white px-6 py-1.5 text-sm rounded-full font-bold tracking-wider transition-all transform-gpu shadow-[0_4px_15px_rgba(236,72,153,0.4)] hover:shadow-[0_6px_20px_rgba(236,72,153,0.6)] hover:scale-105 active:scale-95"
+          className="bg-gradient-to-r from-[#8b5cf6] to-[#d946ef] hover:from-[#7c3aed] hover:to-[#c026d3] border-none disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed text-white px-8 py-2.5 text-[13px] rounded-2xl font-bold tracking-widest transition-all transform-gpu shadow-[0_4px_20px_rgba(217,70,239,0.4)] hover:shadow-[0_6px_25px_rgba(217,70,239,0.6)] hover:scale-105 active:scale-95"
         >
           ADD
         </button>
         <button 
           onClick={onUndo}
           disabled={historyLength === 0}
-          className="p-1.5 rounded-full bg-white/10 border border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all transform-gpu hover:scale-105 active:scale-95"
+          className="p-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white/50 hover:text-white hover:bg-[#2a2638] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg"
           title="Undo (Ctrl+Z)"
         >
-          <RotateCcw size={16} />
+          <RotateCcw size={18} />
         </button>
         <button 
           onClick={onRedo}
           disabled={undoneLength === 0}
-          className="p-1.5 rounded-full bg-white/10 border border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all transform-gpu hover:scale-105 active:scale-95"
+          className="p-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white/50 hover:text-white hover:bg-[#2a2638] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg"
           title="Redo (Ctrl+Y)"
         >
-          <RotateCw size={16} />
+          <RotateCw size={18} />
         </button>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <ViewModeSwitcher viewMode={viewMode} setViewMode={setViewMode} />
         <button 
           onClick={onOpenMyBets}
-          className="flex items-center justify-center gap-2 p-2 sm:px-3 sm:py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 hover:bg-white/20 hover:border-white/30 transition-all transform-gpu hover:scale-105 active:scale-95 shadow-[0_4px_10px_rgba(0,0,0,0.1)]"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white hover:bg-[#2a2638] transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg"
         >
           <ClipboardList size={16} className="text-pink-400" />
-          <span className="hidden sm:inline text-xs font-bold tracking-wider">MY BETS</span>
+          <span className="hidden sm:inline text-[13px] font-bold tracking-widest">MY BETS</span>
         </button>
         <button 
           onClick={onOpenStats}
-          className="flex items-center justify-center gap-2 p-2 sm:px-3 sm:py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90 hover:bg-white/20 hover:border-white/30 transition-all transform-gpu hover:scale-105 active:scale-95 shadow-[0_4px_10px_rgba(0,0,0,0.1)]"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1e1b29] border border-white/5 text-white hover:bg-[#2a2638] transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg"
         >
           <BarChart2 size={16} className="text-blue-400" />
-          <span className="hidden sm:inline text-xs font-bold tracking-wider">STATS</span>
+          <span className="hidden sm:inline text-[13px] font-bold tracking-widest">STATS</span>
         </button>
         <button 
           onClick={() => {
             setIsHudOpen(!isHudOpen);
             if (isMenuOpen) setIsMenuOpen(false);
           }}
-          className={`p-1.5 rounded-full border transition-all transform-gpu hover:scale-105 active:scale-95 ${isHudOpen ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.3)]' : 'bg-white/10 border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30'}`}
+          className={`p-2.5 rounded-full border transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg ${isHudOpen ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.3)]' : 'bg-[#1e1b29] border-white/5 text-white/50 hover:text-white hover:bg-[#2a2638]'}`}
         >
-          <Activity size={16} />
+          <Activity size={18} />
         </button>
         <button 
           onClick={() => {
             setIsMenuOpen(!isMenuOpen);
             if (isHudOpen) setIsHudOpen(false);
           }}
-          className={`p-1.5 rounded-full border transition-all transform-gpu hover:scale-105 active:scale-95 ${isMenuOpen ? 'bg-pink-500/20 border-pink-500/50 text-pink-300 shadow-[0_0_15px_rgba(236,72,153,0.3)]' : 'bg-white/10 border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30'}`}
+          className={`p-2.5 rounded-full border transition-all transform-gpu hover:scale-105 active:scale-95 shadow-lg ${isMenuOpen ? 'bg-pink-500/20 border-pink-500/50 text-pink-300 shadow-[0_0_15px_rgba(236,72,153,0.3)]' : 'bg-[#1e1b29] border-white/5 text-white/50 hover:text-white hover:bg-[#2a2638]'}`}
         >
-          <Menu size={16} />
+          <Menu size={18} />
         </button>
       </div>
     </div>

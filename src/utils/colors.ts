@@ -94,9 +94,9 @@ export const PATTERN_COLORS: Record<string, {
 };
 
 export const getColor = (num: number) => {
-  if (num === 0) return 'bg-green-500/80 text-white backdrop-blur-sm'; // Green
-  if (RED_NUMBERS.has(num)) return 'bg-red-500/80 text-white backdrop-blur-sm'; // Red
-  if (BLACK_NUMBERS.has(num)) return 'bg-black/60 text-white backdrop-blur-sm'; // Black
+  if (num === 0) return 'bg-[#22c55e] text-white shadow-[0_0_10px_rgba(34,197,94,0.5)] border border-[#4ade80]/50'; // Green
+  if (RED_NUMBERS.has(num)) return 'bg-[#ef4444] text-white shadow-[0_0_10px_rgba(239,68,68,0.5)] border border-[#f87171]/50'; // Red
+  if (BLACK_NUMBERS.has(num)) return 'bg-[#111827] text-white shadow-[0_0_10px_rgba(0,0,0,0.5)] border border-white/20'; // Black
   return 'bg-gray-500/50 text-white backdrop-blur-sm';
 };
 
