@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0 --open",
     "build": "vite build",
+    "build:offline": "set SINGLE_FILE=1&& vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
