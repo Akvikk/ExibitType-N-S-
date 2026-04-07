@@ -5,25 +5,11 @@ import {defineConfig} from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: '/ExibitType-N-S-/',
+  base: './',
   plugins: [
     react(), 
     tailwindcss(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'auto',
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
-      },
-      manifest: {
-        name: 'ExibitSandN',
-        short_name: 'ExibitSandN',
-        description: 'Offline Roulette Pattern Engine',
-        theme_color: '#0a0510',
-        background_color: '#0a0510',
-        display: 'standalone'
-      }
-    })
+    viteSingleFile()
   ],
   resolve: {
     alias: {
