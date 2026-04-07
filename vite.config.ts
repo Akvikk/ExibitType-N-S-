@@ -16,8 +16,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
       manifest: {
-        name: 'ExibitL 2.1',
-        short_name: 'ExibitL',
+        name: 'ExibitSandN',
+        short_name: 'ExibitSandN',
         description: 'Offline Roulette Pattern Engine',
         theme_color: '#0a0510',
         background_color: '#0a0510',
